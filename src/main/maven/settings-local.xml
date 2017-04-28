@@ -14,7 +14,7 @@
 
     <mirrors>
         <mirror>
-            <id>nexus.local-mirror</id>
+            <id>local-nexus-mirror</id>
             <name>local nexus mirror</name>
             <url>${nexus.local.mirror}</url>
             <!--mirrorOf>central,spring-libs-release,spring-milestone,spring-libs-snapshot,conjars.org,clojars.org,org.jboss.repository,codehaus-mule-repo,repo.jenkins-ci.org</mirrorOf-->
@@ -25,20 +25,20 @@
     <servers>
         <server>
             <id>gpg.passphrase</id>
-            <passphrase>${build.gpg.passphrase}</passphrase>
+            <passphrase>${env.GPG_PASSPHRASE}</passphrase>
         </server>
         <server>
-            <id>nexus.local-releases</id>
+            <id>local-nexus-releases</id>
             <username>deployment</username>
             <password>{L70pFo7kvgoHK3T/sD64ZmfhkyKXPShRU0sJG0PXNWc=}</password>
         </server>
         <server>
-            <id>nexus.local-snapshots</id>
+            <id>local-nexus-snapshots</id>
             <username>deployment</username>
             <password>{L70pFo7kvgoHK3T/sD64ZmfhkyKXPShRU0sJG0PXNWc=}</password>
         </server>
         <server>
-            <id>nexus.local-thirdparty</id>
+            <id>local-nexus-thirdparty</id>
             <username>deployment</username>
             <password>{L70pFo7kvgoHK3T/sD64ZmfhkyKXPShRU0sJG0PXNWc=}</password>
         </server>
@@ -69,31 +69,35 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <gpg.keyname>${build.gpg.keyname}</gpg.keyname>
+                <gpg.executable>gpg</gpg.executable>
+                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
             </properties>
         </profile>
         <profile>
             <id>local-infrastructure</id>
             <properties>
                 <sonar.host.url>${local-sonar.host.url}</sonar.host.url>
+                <!--sonar.jdbc.url>jdbc:h2:tcp://local-sonarqube/sonar</sonar.jdbc.url>
+                <sonar.jdbc.url>jdbc:postgresql://local-postgresql:5432/sonar</sonar.jdbc.url-->
             </properties>
             <repositories>
                 <repository>
-                    <id>nexus.local-releases</id>
+                    <id>local-nexus-releases</id>
                     <name>local nexus releases</name>
                     <url>${nexus.local.repositories}/maven-releases/</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>false</enabled></snapshots>
                 </repository>
                 <repository>
-                    <id>nexus.local-snapshots</id>
+                    <id>local-nexus-snapshots</id>
                     <name>local nexus snapshots</name>
                     <url>${nexus.local.repositories}/maven-snapshots/</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </repository>
                 <repository>
-                    <id>nexus.local-thirdparty</id>
+                    <id>local-nexus-thirdparty</id>
                     <name>local nexus thirdparty</name>
                     <url>${nexus.local.repositories}/maven-thirdparty/</url>
                     <releases><enabled>true</enabled></releases>
@@ -102,21 +106,21 @@
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>nexus.local-releases</id>
+                    <id>local-nexus-releases</id>
                     <name>local nexus releases</name>
                     <url>${nexus.local.repositories}/maven-releases/</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>false</enabled></snapshots>
                 </pluginRepository>
                 <pluginRepository>
-                    <id>nexus.local-snapshots</id>
+                    <id>local-nexus-snapshots</id>
                     <name>local nexus snapshots</name>
                     <url>${nexus.local.repositories}/maven-snapshots/</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </pluginRepository>
                 <pluginRepository>
-                    <id>nexus.local-thirdparty</id>
+                    <id>local-nexus-thirdparty</id>
                     <name>local nexus thirdparty</name>
                     <url>${nexus.local.repositories}/maven-thirdparty/</url>
                     <releases><enabled>true</enabled></releases>
