@@ -4,19 +4,34 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                         http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
+
+
     <localRepository>${user.home}/.m2/repository</localRepository>
     <interactiveMode/>
     <usePluginRegistry/>
     <offline/>
 
     <proxies>
+        <!--proxy>
+            <id>http-proxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>127.0.0.1</host>
+            <port>8080</port>
+        </proxy-->
     </proxies>
 
     <mirrors>
+
+
+
+
+
+
         <mirror>
             <id>local-nexus-mirror</id>
             <name>local nexus mirror</name>
-            <url>${nexus.local.mirror}</url>
+            <url>${local-nexus.repository}/maven-public/</url>
             <!--mirrorOf>central,spring-libs-release,spring-milestone,spring-libs-snapshot,conjars.org,clojars.org,org.jboss.repository,codehaus-mule-repo,repo.jenkins-ci.org</mirrorOf-->
             <mirrorOf>external:*,!github-chshawkn-wagon-maven-plugin</mirrorOf>
         </mirror>
@@ -54,7 +69,7 @@
     </servers>
 
     <activeProfiles>
-        <activeProfile>local-infrastructure</activeProfile>
+        <activeProfile>infrastructure-local</activeProfile>
     </activeProfiles>
 
     <pluginGroups>
@@ -75,7 +90,18 @@
             </properties>
         </profile>
         <profile>
-            <id>local-infrastructure</id>
+            <id>default-local-sonar-host-url</id>
+            <activation>
+                <property>
+                    <name>!local-sonar.host.url</name>
+                </property>
+            </activation>
+            <properties>
+                <local-sonar.host.url>http://sonarqube.local:9000</local-sonar.host.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>infrastructure-local</id>
             <properties>
                 <sonar.host.url>${local-sonar.host.url}</sonar.host.url>
                 <!--sonar.jdbc.url>jdbc:h2:tcp://local-sonarqube/sonar</sonar.jdbc.url>
@@ -85,21 +111,21 @@
                 <repository>
                     <id>local-nexus-releases</id>
                     <name>local nexus releases</name>
-                    <url>${nexus.local.repositories}/maven-releases/</url>
+                    <url>${local-nexus.repository}/maven-releases/</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>false</enabled></snapshots>
                 </repository>
                 <repository>
                     <id>local-nexus-snapshots</id>
                     <name>local nexus snapshots</name>
-                    <url>${nexus.local.repositories}/maven-snapshots/</url>
+                    <url>${local-nexus.repository}/maven-snapshots/</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </repository>
                 <repository>
                     <id>local-nexus-thirdparty</id>
                     <name>local nexus thirdparty</name>
-                    <url>${nexus.local.repositories}/maven-thirdparty/</url>
+                    <url>${local-nexus.repository}/maven-thirdparty/</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </repository>
@@ -108,21 +134,21 @@
                 <pluginRepository>
                     <id>local-nexus-releases</id>
                     <name>local nexus releases</name>
-                    <url>${nexus.local.repositories}/maven-releases/</url>
+                    <url>${local-nexus.repository}/maven-releases/</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>false</enabled></snapshots>
                 </pluginRepository>
                 <pluginRepository>
                     <id>local-nexus-snapshots</id>
                     <name>local nexus snapshots</name>
-                    <url>${nexus.local.repositories}/maven-snapshots/</url>
+                    <url>${local-nexus.repository}/maven-snapshots/</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </pluginRepository>
                 <pluginRepository>
                     <id>local-nexus-thirdparty</id>
                     <name>local nexus thirdparty</name>
-                    <url>${nexus.local.repositories}/maven-thirdparty/</url>
+                    <url>${local-nexus.repository}/maven-thirdparty/</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </pluginRepository>
