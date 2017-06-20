@@ -45,17 +45,17 @@
         <server>
             <id>local-nexus-releases</id>
             <username>deployment</username>
-            <password>{L70pFo7kvgoHK3T/sD64ZmfhkyKXPShRU0sJG0PXNWc=}</password>
+            <password>deployment</password>
         </server>
         <server>
             <id>local-nexus-snapshots</id>
             <username>deployment</username>
-            <password>{L70pFo7kvgoHK3T/sD64ZmfhkyKXPShRU0sJG0PXNWc=}</password>
+            <password>deployment</password>
         </server>
         <server>
             <id>local-nexus-thirdparty</id>
             <username>deployment</username>
-            <password>{L70pFo7kvgoHK3T/sD64ZmfhkyKXPShRU0sJG0PXNWc=}</password>
+            <password>deployment</password>
         </server>
         <server>
             <id>local-mvnsite</id>
@@ -64,7 +64,7 @@
             <!--username>root</username>
             <privateKey>${user.home}/.ssh/local-mvnsite</privateKey-->
             <username>deployment</username>
-            <password>{L70pFo7kvgoHK3T/sD64ZmfhkyKXPShRU0sJG0PXNWc=}</password>
+            <password>deployment</password>
         </server>
     </servers>
 
