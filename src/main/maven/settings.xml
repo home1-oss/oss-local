@@ -62,7 +62,7 @@
             <!--username>root</username>
             <password>root</password-->
             <!--username>root</username>
-            <privateKey>${user.home}/.ssh/local-mvnsite</privateKey-->
+            <privateKey>${user.home}/.ssh/mvnsite.local</privateKey-->
             <username>deployment</username>
             <password>deployment</password>
         </server>
